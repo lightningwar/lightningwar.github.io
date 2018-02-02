@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[base64效果图]]></title>
+    <url>%2F2018%2F02%2F02%2Fbase64%E6%95%88%E6%9E%9C%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[怀念]]></content>
+      <categories>
+        <category>分享</category>
+      </categories>
+      <tags>
+        <tag>base64</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[玩转base64编码]]></title>
+    <url>%2F2018%2F02%2F02%2F%E7%8E%A9%E8%BD%ACbase64%E7%BC%96%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[一种能将图片转换成数据流并保存的技术 引言图片处理在前端工作中可谓占据了很重要的一壁江山。而图片的 base64 编码可能相对一些人而言比较陌生，本文不是从纯技术的角度去讨论图片的 base64 编码。标题略大，不过只是希望通过一些浅显的论述，让你知道什么是图片的 base64 编码，为什么我们要用它，我们如何使用并且方便的使用它，并让你懂得如何去在前端的实际工作中运用它。 什么是base64编码？我不是来讲概念的，直接切入正题，图片的 base64 编码就是可以将一副图片数据编码成一串字符串，使用该字符串代替图像地址。 这样做有什么意义呢？我们知道，我们所看到的网页上的每一个图片，都是需要消耗一个 http 请求下载而来的（所有才有了 csssprites 技术的应运而生，但是 csssprites 有自身的局限性，下文会提到）。 没错，不管如何，图片的下载始终都要向服务器发出请求，要是图片的下载不用向服务器发出请求，而可以随着 HTML 的下载同时下载到本地那就太好了，而 base64 正好能解决这个问题。 那么图片的 base64 编码长什么样子呢？举个栗子。www.google.com 的首页搜索框右侧的搜索小图标使用的就是base64编码。我们可以看到： 1234//在css里的写法#fkbx-spch, #fkbx-hspch &#123; background: url(data:image/gif;base64,R0lGODlhHAAmAKIHAKqqqsvLy0hISObm5vf394uLiwAAAP///yH5B…EoqQqJKAIBaQOVKHAXr3t7txgBjboSvB8EpLoFZywOAo3LFE5lYs/QW9LT1TRk1V7S2xYJADs=) no-repeat center;&#125; 12//在html代码img标签里的写法&lt;img src=&quot;data:image/gif;base64,R0lGODlhHAAmAKIHAKqqqsvLy0hISObm5vf394uLiwAAAP///yH5B…EoqQqJKAIBaQOVKHAXr3t7txgBjboSvB8EpLoFZywOAo3LFE5lYs/QW9LT1TRk1V7S2xYJADs=&quot;&gt; 上面分别是图片的 base64 编码在 css 里面的写法和在 html 标签里的写法。base64 编码长得就是这个样子，当然 base64 编码不仅仅运用在图片编码，还可以： 1thunder://QUFodHRwOi8vZG93bi5zYW5kYWkubmV0L3RodW5kZXI3L1RodW5kZXI3LjEuNS4yMTUyLmV4ZVpa（不要复制我我真的不是种子） 嘿嘿没错，迅雷的“专用地址”也是用 Base64 加密的，有兴趣自行 google，不做赘述。 为什么要使用 Base64 编码？那么为什么要使用 base64 传输图片文件？上文也有提及，因为这样可以节省一个 http 请求。图片的 base64 编码可以算是前端优化的一环。效益虽小，但却缺能积少成多。 说到这里，不得不提的是 CssSprites 技术，后者也是为了减少 http 请求，而将页面中许多细小的图片合并为一张大图。那么图片的 base64 编码和 CssSprites 有什么异同，又该如何取舍呢？ 所以，在这里要明确使用 base64 的一个前提，那就是被 base64 编码的图片足够尺寸小。以博客园的 logo 为例： 如图所示，博客园的 Logo 只有 3.27KB，已经很小了，但是如果将其制作转化成 base64 编码，生成的 base64 字符串编码足足有 4406 个,也就是说，图片被编码之后，生成的字符串编码大小一般而言都会比原文件稍大一些。即便 base64 编码能够被 gzip 压缩，压缩率能达到 50% 以上，想象一下，一个元素的 css 样式编写居然超过了 2000个 字符，那对 css 整体的可读性将会造成十分大的影响，代码的冗余使得在此使用 base64 编码将得不偿失。 那么，是不是表示 base64 编码无用武之地呢？不然。当页面中的图片满足以下要求，base64 就能大显生手。 如果图片足够小且因为用处的特殊性无法被制作成雪碧图（CssSprites），在整个网站的复用性很高且基本不会被更新。 那么此时使用 base64 编码传输图片就可谓好钢用在刀刃上，思前想后，符合这个规则的，有一个是我们经常会遇到的，就是页面的背景图 background-image 。在很多地方，我们会制作一个很小的图片大概是几px*几px，然后平铺它页面当背景图。因为是背景图的缘故，所以无法将它放入雪碧图，而它却存在网站的很多页面，这种图片往往只有几十字节，却需要一个 http 请求，十分不值得。那么此时将它转化为 base64 编码，何乐而不为？ 下面是一个只有 50 字节的2*2的的背景图。将其转化成 base64 编码，只有 100 多个字符，相比一个 http 请求，这种转换无疑更值得推崇。 摘自：https://www.cnblogs.com/coco1s/p/4375774.html 如何将图片转成base64编码存储http://base64.xpcha.com/pic.html]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+        <tag>base64</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F01%2F27%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[股票实盘交易]]></title>
+    <url>%2F2018%2F01%2F27%2F%E8%82%A1%E7%A5%A8%E5%AE%9E%E7%9B%98%E4%BA%A4%E6%98%93%2F</url>
+    <content type="text"><![CDATA[股票实盘交易说一下我的炒股风格吧 标准的超短线玩家 操盘方式 低吸和打板。这两种方式截然不同，一个是逢低买入，一个是打涨停板，买在最高点，但背后的逻辑一致，都是资金博弈。操盘风格 超短线。当天买，第二天不涨停就卖。不涨停就是风险，就得卖。 中长线。大概周期为一个月。选股 人气股。人气股包括妖股，龙头股，强势股。 人气股的特点，有板块效应，成交量和换手率比较大。人气股就是大众情人。 行情不好，或者，没有好标买的时候，一般会空仓。]]></content>
+      <categories>
+        <category>经济学</category>
+      </categories>
+      <tags>
+        <tag>金融</tag>
+        <tag>市场</tag>
+      </tags>
+  </entry>
+</search>
