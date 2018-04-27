@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[用PS制作超炫酷的爆炸火焰特效]]></title>
+    <url>%2F2018%2F04%2F27%2F%E7%94%A8PS%E5%88%B6%E4%BD%9C%E8%B6%85%E7%82%AB%E9%85%B7%E7%9A%84%E7%88%86%E7%82%B8%E7%81%AB%E7%84%B0%E7%89%B9%E6%95%88%2F</url>
+    <content type="text"><![CDATA[激情四射的520，来组燃到爆的火焰特效！ 不多啰嗦，效果如下图： 第一步 将PS语言改为英文 打开PS文件目录下 → locales → zh_CN → support files,修改tw10428.dat文件名称（名字随意）。 第二步 替换笔刷 点击左上角笔刷位置，再点击右上角小小的设置图标，将需要用到的笔刷文件FireStorm_Brushes.abr，得导入到ps，替换笔刷，replace brushes。 第三步 载入动作 最关键载入的一步，打开图片，注意得是那种高质量的图片，建议1500px 3500px，因为该火焰效果特别逼真，可以扣细节的那种，烟雾及其火花都特别细腻，相对说需要大图才能承载。 新建图层，ctrl + shift + n，然后命名图层为brush，一定得拼写正确，否则无法识别。 接下来，在该图层上需要添加火焰特效的地方用笔刷画画。 这一步开始导入动作，alt+F9快捷键导出动作面板，点击该面板右上角位置的小图标，出现上列表，按load actions，导入FireStorm.atn，按照ps版本载入动作。 该面板会有5种效果预置，分别右，左，上，下，中。 参考链接 激情四射的520，来组燃到爆的火焰特效！ 用PS制作超炫酷的爆炸火焰特效 笔刷下载链接 百度网盘传送门① 百度网盘传送门②]]></content>
+      <categories>
+        <category>设计</category>
+      </categories>
+      <tags>
+        <tag>Photoshop</tag>
+        <tag>设计技巧</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[base64效果图]]></title>
     <url>%2F2018%2F02%2F02%2Fbase64%E6%95%88%E6%9E%9C%E5%9B%BE%2F</url>
     <content type="text"><![CDATA[怀念]]></content>
